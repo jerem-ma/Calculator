@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 public class test{
 	
-	@Test
+/*	@Test
 	public final void testFalse(){
 		fail("C'est faux t'as vu");
-	}
+	}*/
 }
