@@ -37,6 +37,14 @@
 			android:layout_width="wrap_content"
 			android:theme="@style/AppTheme.Button.OrangeText"
 			android:text="←" />
+
+		<Button
+			android:id="@+id/PercentButton"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:theme="@style/AppTheme.Button.OrangeText"
+			android:text="%" />
+	
 	</androidx.gridlayout.widget.GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
