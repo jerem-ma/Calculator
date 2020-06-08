@@ -65,6 +65,14 @@
 			android:layout_width="wrap_content"
 			android:theme="@style/AppTheme.Button.WhiteText"
 			android:text="8" />			
+
+		<Button
+			android:id="@+id/NumberButton-9"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:theme="@style/AppTheme.Button.WhiteText"
+			android:text="9" />			
+	
 	
 	</androidx.gridlayout.widget.GridLayout>
 
