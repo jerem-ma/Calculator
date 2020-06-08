@@ -115,6 +115,13 @@
 			android:theme="@style/AppTheme.Button.WhiteText"
 			android:text="1" />			
 
+		<Button
+			android:id="@+id/NumberButton-2"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:theme="@style/AppTheme.Button.WhiteText"
+			android:text="2" />			
+
 	</androidx.gridlayout.widget.GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
