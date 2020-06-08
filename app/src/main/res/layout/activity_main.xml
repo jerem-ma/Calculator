@@ -143,6 +143,13 @@
 			android:theme="@style/AppTheme.Button.WhiteText"
 			android:text="0" />			
 
+		<Button
+			android:id="@+id/DecimalPointButton"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:theme="@style/AppTheme.Button.WhiteText"
+			android:text="." />			
+
 	</androidx.gridlayout.widget.GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
