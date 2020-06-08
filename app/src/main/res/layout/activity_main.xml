@@ -56,14 +56,14 @@
 			android:id="@+id/NumberButton-7"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
-			android:theme="@style/AppTheme.Button.OrangeText"
+			android:theme="@style/AppTheme.Button.WhiteText"
 			android:text="7" />
 
 		<Button
 			android:id="@+id/NumberButton-8"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
-			android:theme="@style/AppTheme.Button.OrangeText"
+			android:theme="@style/AppTheme.Button.WhiteText"
 			android:text="8" />			
 	
 	</androidx.gridlayout.widget.GridLayout>
