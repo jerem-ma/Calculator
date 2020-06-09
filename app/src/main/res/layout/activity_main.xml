@@ -138,6 +138,8 @@
 			android:theme="@style/AppTheme.Button.OrangeText"
 			android:text="+" />			
 
+		<Space />
+
 		<Button
 			android:id="@+id/NumberButton-0"
 			android:layout_height="wrap_content"
