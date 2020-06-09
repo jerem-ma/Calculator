@@ -23,7 +23,7 @@
 	</style>
 
 	<style name="AppTheme.Divider.Horizontal" parent="AppTheme.Divider">
-		<item name="android:layout_width">1dp</item>
-		<item name="android:layout_height">match_parent</item>
+		<item name="android:layout_height">1dp</item>
+		<item name="android:layout_width">fill_parent</item>
 	</style>
 </resources>
