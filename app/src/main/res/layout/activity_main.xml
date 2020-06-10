@@ -9,7 +9,7 @@
 	tools:context=".MainActivity">
 
 	<View
-		android:theme="@style/AppTheme.Divider.Horizontal"
+		style="@style/AppTheme.Divider.Horizontal"
 		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintBottom_toTopOf="@+id/keys" />
