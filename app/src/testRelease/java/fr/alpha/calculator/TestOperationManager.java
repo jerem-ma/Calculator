@@ -10,12 +10,12 @@ import fr.alpha.calculator.OperationManager;
 
 		/* Tests for addCharacter method */
 		@Test
-		public testAddCharacterEmptyOperation(){
+		public void testAddCharacterEmptyOperation(){
 
 			final OperationManager testOperationManager = new OperationManager();
 			
 			assertTrue(testOperationManager.addCharacter('0'), 
-					"addCharacter must return true !";
+					"addCharacter must return true !");
 
 			final OperationManager expectedOperationManager = new OperationManager();
 			expectedOperationManager.setOperation("0");
@@ -26,7 +26,7 @@ import fr.alpha.calculator.OperationManager;
 		}
 
 		@Test
-		public testAddCharacterFilledOperation(){
+		public void testAddCharacterFilledOperation(){
 			
 			final OperationManager testOperationManager = new OperationManager();
 			testOperationManager.setOperation("3+73-5");
@@ -43,7 +43,7 @@ import fr.alpha.calculator.OperationManager;
 		}
 
 		@Test
-		public testAddInvalidCharacter(){
+		public void testAddInvalidCharacter(){
 			final OperationManager testOperationManager = new OperationManager();
 			testOperationManager.setOperation("3+73-");
 			
