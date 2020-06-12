@@ -11,6 +11,14 @@ package fr.alpha.calculator.interfaces;
 public interface OperationManager{
 
 	private String operation;
+
+	/**
+	 *
+	 * Getters and setters used for unit tests
+	 *
+	 */
+	public String getOperation();
+	public void setOperation(@NotNull operation)
 	
 	/**
 	 * 
