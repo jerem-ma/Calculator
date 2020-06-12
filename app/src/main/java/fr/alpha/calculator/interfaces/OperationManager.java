@@ -1,5 +1,7 @@
 package fr.alpha.calculator.interfaces;
 
+import androidx.annotation.NonNull;
+
 /**
  *
  * An object that will manage operation asked by the user.
@@ -10,15 +12,13 @@ package fr.alpha.calculator.interfaces;
  */
 public interface OperationManager{
 
-	private String operation;
-
 	/**
 	 *
 	 * Getters and setters used for unit tests
 	 *
 	 */
 	public String getOperation();
-	public void setOperation(@NotNull operation)
+	public void setOperation(@NonNull String operation);
 	
 	/**
 	 * 
@@ -46,7 +46,7 @@ public interface OperationManager{
 		* succesfully complete, the result is set to the operation and returned.
 		* 
 		*/
-	public double computes(@NotNull String operation);
+	public double computes(@NonNull String operation);
 
 	/**
 	 *
