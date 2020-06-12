@@ -10,7 +10,7 @@ package fr.alpha.calculator.interfaces;
  */
 public interface OperationManager{
 
-	String operation;
+	private String operation;
 	
 	/**
 	 * 
