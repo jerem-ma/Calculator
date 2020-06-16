@@ -3,9 +3,9 @@ package fr.alpha.calculator;
 import org.apache.commons.lang3.Validate;
 import androidx.annotation.NonNull;
 
-import fr.alpha.calculator.interfaces;
+import fr.alpha.calculator.interfaces.IOperationManager;
 
-public class OperationManager implements interfaces.OperationManager{
+public class OperationManager implements IOperationManager{
 
 	private String operation;
 

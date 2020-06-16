@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
  * modification on the operation string. 
  *
  */
-public interface OperationManager{
+public interface IOperationManager{
 
 	/**
 	 *
