@@ -1,6 +1,7 @@
 package fr.alpha.calculator;
 
 import org.apache.commons.lang3.Validate;
+import androidx.annotation.NonNull;
 
 import fr.alpha.calculator.interfaces;
 
@@ -21,7 +22,7 @@ public class OperationManager implements interfaces.OperationManager{
 	}
 
 	@Override
-	public void setOperation(@NotNull String operation){
+	public void setOperation(@NonNull String operation){
 		Validate.notNull(operation);
 		this.operation = operation;
 	}
