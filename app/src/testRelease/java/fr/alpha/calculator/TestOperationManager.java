@@ -57,4 +57,28 @@ import fr.alpha.calculator.OperationManager;
 					"operation must be equal to \"3.73-\" !");
 		}
 
+		@Test
+		public void testClearEmptyOperation(){
+			final OperationManager testOperationManager = new OperationManager();
+			testOperationManager.clearOperation();
+
+			final OperationManager expectedOperationManager = new OperationManager();
+			expectedOperationManager.setOperation("");
+
+			assertEquals(expectedOperationManager, testOperationManager,
+					"operation must be equal to an empty string !");
+		}
+
+		@Test
+		public void testClearFilledOperation(){
+			final OpearationManager testOperationManager = new OperationManager();
+			testOperationManager.setOperation("5-3");
+			testOperationManager.clearOperation();
+
+			final OperationManager expectedOperationManager = new OperationManager();
+			expectedOperationManager.setOperation("");
+
+			assertEquals(expectedOperationManager, testOperationManager,
+					"operation must be equal to an empty string !");
+		}
 	}
