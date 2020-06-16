@@ -1,8 +1,8 @@
-package fr.alpha.calculator
+package fr.alpha.calculator;
 
-import org.apache.commons.lang3.Validate
+import org.apache.commons.lang3.Validate;
 
-import fr.alpha.calculator.interfaces
+import fr.alpha.calculator.interfaces;
 
 public class OperationManager implements interfaces.OperationManager{
 
