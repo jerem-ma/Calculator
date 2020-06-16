@@ -81,4 +81,39 @@ import fr.alpha.calculator.OperationManager;
 			assertEquals(expectedOperationManager, testOperationManager,
 					"operation must be equal to an empty string !");
 		}
+
+		@Test
+		public void testComputes(){
+			final OperationManager testOperationManager = new OperationManager();
+			testOperationManager.setOperation("5-3");
+			
+			assertEquals(2.0, testOperationManager.computes(),
+					"computes must return 2.0 !");
+
+			testOperationManager.setOperation("4*3");
+			assertEquals(12.0, testOperationManager.computes(),
+					"computes must return 12.0 !");
+
+			testOperationManager.setOperation("10/3");
+			assertEquals(10/3, testOperationManager.computes()
+					"computes must return the result of 10/3");
+
+			testOperationManager.setOperation("5/0");
+			assertThrows(ArithmeticException.class, new Executable(){
+
+				@Override
+				public void execute(){
+					testOperationManager.computes();
+				}
+
+			}, "computes must throw an ArithmeticException !");
+
+			testOperationManager.setOperation("0/5");
+			assertEquals(0.0, testOperationManager.computes(),
+					"computes must return 0.0 !");
+
+			testOperationManager.setOperation("5*0");
+			assertEquals(0.0, testOperationManager.computes(),
+					"computes must return 0.0 !");
+		}
 	}
