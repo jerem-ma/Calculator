@@ -116,4 +116,39 @@ import fr.alpha.calculator.OperationManager;
 			assertEquals(0.0, testOperationManager.computes(),
 					"computes must return 0.0 !");
 		}
+
+		@Test
+		public void testRemoveCharacter(){
+			final OperationManager testOperationManager = new OperationManager();
+			testOperationManager.setOperation("4*23");
+
+			assertTrue(testOperationManager.removeCharacter(),
+					"removeCharacter must return true !");
+
+			final OperationManager expectedOperationManager = new OperationManager();
+			expectedOperationManager.setOperation("4*2");
+
+			assertEquals(expectedOperationManager, testOperationManager,
+					"operation must be equal to \"4*2\"");
+
+
+			testOperationManager.setOperation("5");
+			assertTrue(testOperationManager.removeCharacter(),
+					"removeCharacter must return true !");
+
+			expectedOperationManager.setOperation("0");
+
+			assertEquals(expectedOperationManager, testOperationManager,
+					"operation must be equal to 0 !);
+
+
+			testOperationManager.setOperation("");
+			assertFalse(testOperationManager.removeCharacter(),
+					"removeCharacter must return false !");
+
+			expectedOperationManager.setOperation("0");
+
+			assertEquals(expectedOperationManager, testOperationManager,
+					"operation must be equal to 0 !);
+		}
 	}
