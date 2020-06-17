@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="sign_plus">
+		<item>+</item>
+		<item>+</item>
+	</string-array>
+	<string-array name="sign_minus">
+		<item>-</item>
+		<item>−</item>
+	</string-array>
+	<string-array name="sign_multiplication">
+		<item>*</item>
+		<item>×</item>
+	</string-array>
+	<string-array name="sign_division">
+		<item>/</item>
+		<item>÷</item>
+	</string-array>
+</resources>
