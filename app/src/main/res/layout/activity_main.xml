@@ -59,7 +59,7 @@
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
 			android:theme="@style/AppTheme.Button.OrangeText"
-			android:text="÷" />			
+			android:text="@string/sign_display_division" />			
 
 		<Button
 			android:id="@+id/NumberButton-7"
@@ -87,7 +87,7 @@
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
 			android:theme="@style/AppTheme.Button.OrangeText"
-			android:text="×" />			
+			android:text="@string/sign_display_multiplication" />			
 
 		<Button
 			android:id="@+id/NumberButton-4"
@@ -115,7 +115,7 @@
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
 			android:theme="@style/AppTheme.Button.OrangeText"
-			android:text="−" />			
+			android:text="@string/sign_display_minus" />
 
 		<Button
 			android:id="@+id/NumberButton-1"
@@ -136,14 +136,14 @@
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
 			android:theme="@style/AppTheme.Button.WhiteText"
-			android:text="3" />			
+			android:text="3" />
 
 		<Button
 			android:id="@+id/SumButton"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
 			android:theme="@style/AppTheme.Button.OrangeText"
-			android:text="+" />			
+			android:text="@string/sign_display_plus" />
 
 		<Space />
 
