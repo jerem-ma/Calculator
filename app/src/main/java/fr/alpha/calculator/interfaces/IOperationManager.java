@@ -53,7 +53,7 @@ public interface IOperationManager{
 	 * Remove the last character of the operation string.
 	 *
 	 * If there is only one character in the operation string, this will be set
-	 * to 0.
+	 * to an empty string.
 	 *
 	 * @return true if there is a character to remove, false otherwise.
 	 *
