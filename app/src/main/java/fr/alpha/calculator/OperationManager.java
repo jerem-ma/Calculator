@@ -7,12 +7,15 @@ import fr.alpha.calculator.interfaces.IOperationManager;
 
 public class OperationManager implements IOperationManager{
 
+	private MainActivity mainActivity;
 	private String operation;
 
 	/**
 	 * OperationManager's constructor
 	 */
-	public OperationManager(){
+	public OperationManager(@NonNull MainActivity mainActivity){
+		Validate.notNull(mainActivity);
+		this.mainActivity = mainActivity;
 		operation = "";
 	}
 
