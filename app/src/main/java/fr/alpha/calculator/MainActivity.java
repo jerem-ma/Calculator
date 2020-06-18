@@ -10,4 +10,11 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 	}
+
+	/**
+	 * This method will call getResources() and return what is returned
+	 */
+	public Resources forwardResources(){
+		return getResources();
+	}
 }
