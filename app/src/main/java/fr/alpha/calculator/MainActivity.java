@@ -1,6 +1,7 @@
 package fr.alpha.calculator;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 public class MainActivity extends Activity {
