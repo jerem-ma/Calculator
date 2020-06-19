@@ -46,6 +46,11 @@ public class OperationManager implements IOperationManager{
 		this.operation = operation;
 	}
 
+	@Override
+	public boolean addCharacter(char c){
+	
+	}
+
 	private MathematicalType getMathematicalType(char c){
 		if (Character.isDigit(c))
 			return MathematicalType.DIGIT;
