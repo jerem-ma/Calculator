@@ -19,11 +19,21 @@ public class OperationManager implements IOperationManager{
 		operation = "";
 	}
 
+	/**
+	 * operation getter
+	 *
+	 * Used for unit test only !
+	 */
 	@Override
 	public String getOperation(){
 		return operation;
 	}
 
+	/**
+	 * operation setter
+	 *
+	 * Used for unit test only !
+	 */
 	@Override
 	public void setOperation(@NonNull String operation){
 		Validate.notNull(operation);
