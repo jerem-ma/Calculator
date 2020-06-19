@@ -1,7 +1,7 @@
 package fr.alpha.calculator;
 
-import org.apache.commons.lang3.Validate;
 import androidx.annotation.NonNull;
+import org.apache.commons.lang3.Validate;
 
 import fr.alpha.calculator.interfaces.IOperationManager;
 
