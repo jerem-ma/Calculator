@@ -53,6 +53,22 @@ public class OperationManager implements IOperationManager{
 		final boolean isNotMathematical = mathType == MathematicalType.NONE;
 		if (isNotMathematical)
 			return false;
+
+		if (operation == ""){
+			switch (mathType){
+				case DIGIT:
+					// Don't change anything if the character is '0'
+					if (c != '0')
+						operation = String.valueOf(c);
+
+					return true;
+	
+				case SIGN:
+				case DOT:
+					operation = "0" + c;
+					return true;
+			}
+		}
 	}
 
 	private MathematicalType getMathematicalType(char c){
