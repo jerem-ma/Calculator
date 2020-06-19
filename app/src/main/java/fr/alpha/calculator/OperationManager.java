@@ -48,7 +48,11 @@ public class OperationManager implements IOperationManager{
 
 	@Override
 	public boolean addCharacter(char c){
-	
+		final MathematicalType mathType = getMathematicalType(c);
+
+		final boolean isNotMathematical = mathType == MathematicalType.NONE;
+		if (isNotMathematical)
+			return false;
 	}
 
 	private MathematicalType getMathematicalType(char c){
