@@ -108,7 +108,7 @@ public class OperationManager implements IOperationManager{
 		Validate.notNull(operation);
 
 		for (int i = operation.length() - 1; i >= 0; i--){
-			final char currentChar = operation[i];
+			final char currentChar = operation.charAt(i);
 			final MathematicalType type = getMathematicalType(currentChar);
 
 			switch (type){
