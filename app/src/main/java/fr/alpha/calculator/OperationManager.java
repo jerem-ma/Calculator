@@ -71,7 +71,7 @@ public class OperationManager implements IOperationManager{
 		}
 
 		final char lastChar = operation.charAt(operation.length() - 1);
-		final MathematicalType lastCharType = getMathematicalType(lastCharacter);
+		final MathematicalType lastCharType = getMathematicalType(lastChar);
 
 		switch (lastCharType){
 			case SIGN:
