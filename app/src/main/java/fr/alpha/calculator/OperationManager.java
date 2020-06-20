@@ -104,4 +104,26 @@ public class OperationManager implements IOperationManager{
 		return MathematicalType.NONE;
 	}
 
+	private boolean isLastNumberFloat(@NonNull String operation){
+		Validate.notNull(operation);
+
+		for (int i = operation.length() - 1; i >= 0; i--){
+			final char currentChar = operation[i];
+			final MathematicalType type = getMathematicalType(currentChar);
+
+			switch (type){
+				case DIGIT:
+					continue;
+
+				case SIGN:
+					return false;
+
+				case DOT:
+					return true;
+			}
+		}
+
+		return false;
+	}
+
 }
