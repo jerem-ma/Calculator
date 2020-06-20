@@ -69,6 +69,20 @@ public class OperationManager implements IOperationManager{
 					return true;
 			}
 		}
+
+		final char lastChar = operation.charAt(operation.length() - 1);
+		final MathematicalType lastCharType = getMathematicalType(lastCharacter);
+
+		switch (lastCharType){
+			case SIGN:
+			case DOT:
+				if (mathType == MathematicalType.DIGIT){
+					operation += c;
+					return true;
+				}
+
+				return false;
+		}
 	}
 
 	private MathematicalType getMathematicalType(char c){
