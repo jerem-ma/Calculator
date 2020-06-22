@@ -95,7 +95,7 @@ import fr.alpha.calculator.OperationManager;
 					"computes must return 12.0 !");
 
 			testOperationManager.setOperation("10/3");
-			assertEquals(10/3, testOperationManager.computes()
+			assertEquals(10/3, testOperationManager.computes(),
 					"computes must return the result of 10/3");
 
 			testOperationManager.setOperation("5/0");
@@ -139,7 +139,7 @@ import fr.alpha.calculator.OperationManager;
 			expectedOperationManager.setOperation("0");
 
 			assertEquals(expectedOperationManager, testOperationManager,
-					"operation must be equal to 0 !);
+					"operation must be equal to 0 !");
 
 
 			testOperationManager.setOperation("");
@@ -149,6 +149,6 @@ import fr.alpha.calculator.OperationManager;
 			expectedOperationManager.setOperation("0");
 
 			assertEquals(expectedOperationManager, testOperationManager,
-					"operation must be equal to 0 !);
+					"operation must be equal to 0 !");
 		}
 	}
