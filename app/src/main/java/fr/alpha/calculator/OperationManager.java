@@ -96,6 +96,23 @@ public class OperationManager implements IOperationManager{
 
 				return false;
 		}
+
+		return false;
+	}
+
+	@Override
+	public void clearOperation(){
+
+	}
+
+	@Override
+	public double computes(@NonNull String operation){
+		return 0.0;
+	}
+
+	@Override
+	public boolean removeCharacter(){
+		return false;
 	}
 
 	private MathematicalType getMathematicalType(char c){
