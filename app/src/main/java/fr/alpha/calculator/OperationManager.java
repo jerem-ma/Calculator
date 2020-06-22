@@ -46,6 +46,58 @@ public class OperationManager implements IOperationManager{
 		this.operation = operation;
 	}
 
+	@Override
+	public boolean addCharacter(char c){
+		final MathematicalType mathType = getMathematicalType(c);
+
+		final boolean isNotMathematical = mathType == MathematicalType.NONE;
+		if (isNotMathematical)
+			return false;
+
+		if (operation == ""){
+			switch (mathType){
+				case DIGIT:
+					// Don't change anything if the character is '0'
+					if (c != '0')
+						operation = String.valueOf(c);
+
+					return true;
+	
+				case SIGN:
+				case DOT:
+					operation = "0" + c;
+					return true;
+			}
+		}
+
+		final char lastChar = operation.charAt(operation.length() - 1);
+		final MathematicalType lastCharType = getMathematicalType(lastChar);
+
+		switch (lastCharType){
+			case SIGN:
+			case DOT:
+				if (mathType == MathematicalType.DIGIT){
+					operation += c;
+					return true;
+				}
+
+				return false;
+
+			case DIGIT:
+				if (mathType != MathematicalType.DOT){
+					operation += c;
+					return true;
+				}
+
+				if (!isLastNumberFloat(operation)){
+					operation += c;
+					return true;
+				}
+
+				return false;
+		}
+	}
+
 	private MathematicalType getMathematicalType(char c){
 		if (Character.isDigit(c))
 			return MathematicalType.DIGIT;
@@ -63,6 +115,28 @@ public class OperationManager implements IOperationManager{
 			return MathematicalType.SIGN;
 
 		return MathematicalType.NONE;
+	}
+
+	private boolean isLastNumberFloat(@NonNull String operation){
+		Validate.notNull(operation);
+
+		for (int i = operation.length() - 1; i >= 0; i--){
+			final char currentChar = operation.charAt(i);
+			final MathematicalType type = getMathematicalType(currentChar);
+
+			switch (type){
+				case DIGIT:
+					continue;
+
+				case SIGN:
+					return false;
+
+				case DOT:
+					return true;
+			}
+		}
+
+		return false;
 	}
 
 }
