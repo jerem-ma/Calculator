@@ -82,6 +82,19 @@ public class OperationManager implements IOperationManager{
 				}
 
 				return false;
+
+			case DIGIT:
+				if (mathType != MathematicalType.DOT){
+					operation += c;
+					return true;
+				}
+
+				if (!isLastNumberFloat(operation)){
+					operation += c;
+					return true;
+				}
+
+				return false;
 		}
 	}
 
