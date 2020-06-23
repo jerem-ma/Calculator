@@ -4,9 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import androidx.test.core.app.ActivityScenario;
-
-import fr.alpha.calculator.MainActivity;
 import fr.alpha.calculator.OperationManager;
 
 	public class TestOperationManager{
@@ -14,27 +11,18 @@ import fr.alpha.calculator.OperationManager;
 		/* Tests for addCharacter method */
 		@Test
 		public void testAddCharacterEmptyOperation(){
-			try(
-				final ActivityScenario<MainActivity> scenario =
-				ActivityScenario.launch(MainActivity.class)
-			){
 
-				scenario.onActivity(activity -> {
+			final OperationManager testOperationManager = new OperationManager();
+			
+			assertTrue(testOperationManager.addCharacter('0'), 
+					"addCharacter must return true !");
 
-					final OperationManager testOperationManager = new OperationManager(
-						activity);
-					assertTrue(testOperationManager.addCharacter('0'),
-						"addCharacter must return true !");
+			final OperationManager expectedOperationManager = new OperationManager();
+			expectedOperationManager.setOperation("0");
 
-					final OperationManager expectedOperationManager =
-						new OperationManager(activity);
-					expectedOperationManager.setOperation("0");
+			assertEquals(expectedOperationManager, testOperationManager, 
+					"operation must be equal to \"0\" !");
 
-					assertEquals(expectedOperationManager, testOperationManager,
-							"operation must be equal to \"0\" !");
-
-				});
-			}
 		}
 
 		@Test
