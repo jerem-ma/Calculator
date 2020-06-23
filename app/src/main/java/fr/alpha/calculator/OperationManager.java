@@ -106,7 +106,7 @@ public class OperationManager implements IOperationManager{
 	}
 
 	@Override
-	public double computes(@NonNull String operation){
+	public double computes(){
 		return 0.0;
 	}
 

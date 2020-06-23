@@ -46,7 +46,7 @@ public interface IOperationManager{
 		* succesfully complete, the result is set to the operation and returned.
 		* 
 		*/
-	public double computes(@NonNull String operation);
+	public double computes();
 
 	/**
 	 *
