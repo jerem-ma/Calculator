@@ -13,15 +13,15 @@ import fr.alpha.calculator.R;
 
 public class OperationManager implements IOperationManager{
 
-	private MainActivity mainActivity;
+	private Resources res;
 	private String operation;
 
 	/**
 	 * OperationManager's constructor
 	 */
-	public OperationManager(@NonNull MainActivity mainActivity){
-		Validate.notNull(mainActivity);
-		this.mainActivity = mainActivity;
+	public OperationManager(@NonNull Resources res){
+		Validate.notNull(res);
+		this.res = res;
 		operation = "";
 	}
 
@@ -124,8 +124,7 @@ public class OperationManager implements IOperationManager{
 		if (isDot)
 			return MathematicalType.DOT;
 
-		final Resources res = this.mainActivity.forwardResources();
-		final String[] signMath = res.getStringArray(R.array.sign_math);
+		final String[] signMath = this.res.getStringArray(R.array.sign_math);
 
 		final boolean isSignMath = Arrays.asList(signMath).contains(cString);
 		if (isSignMath)
