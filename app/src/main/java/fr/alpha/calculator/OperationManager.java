@@ -129,6 +129,11 @@ public class OperationManager implements IOperationManager{
 			&& Objects.equals(this.operation, operationManager.operation);
 	}
 
+	@Override
+	public int hashCode(){
+		return Objects.hash(this.mathSigns, this.operation);
+	}
+
 	private MathematicalType getMathematicalType(char c){
 		if (Character.isDigit(c))
 			return MathematicalType.DIGIT;
