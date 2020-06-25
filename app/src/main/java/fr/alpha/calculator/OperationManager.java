@@ -3,7 +3,6 @@ package fr.alpha.calculator;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
-import android.content.res.Resources;
 import androidx.annotation.NonNull;
 import org.apache.commons.lang3.Validate;
 
@@ -13,15 +12,15 @@ import fr.alpha.calculator.R;
 
 public class OperationManager implements IOperationManager{
 
-	private Resources res;
+	private String[] mathSigns;
 	private String operation;
 
 	/**
 	 * OperationManager's constructor
 	 */
-	public OperationManager(@NonNull Resources res){
-		Validate.notNull(res);
-		this.res = res;
+	public OperationManager(@NonNull String[] mathSigns){
+		Validate.notNull(mathSigns);
+		this.mathSigns = mathSigns;
 		operation = "";
 	}
 
@@ -124,9 +123,7 @@ public class OperationManager implements IOperationManager{
 		if (isDot)
 			return MathematicalType.DOT;
 
-		final String[] signMath = this.res.getStringArray(R.array.sign_math);
-
-		final boolean isSignMath = Arrays.asList(signMath).contains(cString);
+		final boolean isSignMath = Arrays.asList(this.mathSigns).contains(cString);
 		if (isSignMath)
 			return MathematicalType.SIGN;
 

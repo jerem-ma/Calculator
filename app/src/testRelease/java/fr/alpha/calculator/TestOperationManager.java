@@ -3,21 +3,24 @@ package fr.alpha.calculator;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import fr.alpha.calculator.OperationManager;
 
 	public class TestOperationManager{
 
+		private final String[] mathSigns = new String[] {"+", "-", "*", "/"};
+
 		/* Tests for addCharacter method */
 		@Test
 		public void testAddCharacterEmptyOperation(){
 
-			final OperationManager testOperationManager = new OperationManager();
+			final OperationManager testOperationManager = new OperationManager(mathSigns);
 			
 			assertTrue(testOperationManager.addCharacter('0'), 
 					"addCharacter must return true !");
 
-			final OperationManager expectedOperationManager = new OperationManager();
+			final OperationManager expectedOperationManager = new OperationManager(mathSigns);
 			expectedOperationManager.setOperation("0");
 
 			assertEquals(expectedOperationManager, testOperationManager, 
@@ -28,13 +31,13 @@ import fr.alpha.calculator.OperationManager;
 		@Test
 		public void testAddCharacterFilledOperation(){
 			
-			final OperationManager testOperationManager = new OperationManager();
+			final OperationManager testOperationManager = new OperationManager(mathSigns);
 			testOperationManager.setOperation("3+73-5");
 
 			assertTrue(testOperationManager.addCharacter('+'),
 					"addCharacter must return true !");
 
-			final OperationManager expectedOperationManager = new OperationManager();
+			final OperationManager expectedOperationManager = new OperationManager(mathSigns);
 			testOperationManager.setOperation("3+73-5+");
 
 			assertEquals(expectedOperationManager, testOperationManager,
@@ -44,13 +47,13 @@ import fr.alpha.calculator.OperationManager;
 
 		@Test
 		public void testAddInvalidCharacter(){
-			final OperationManager testOperationManager = new OperationManager();
+			final OperationManager testOperationManager = new OperationManager(mathSigns);
 			testOperationManager.setOperation("3+73-");
 			
 			assertFalse(testOperationManager.addCharacter('+'),
 					"addcharacter must return false !");
 
-			final OperationManager expectedOperationManager = new OperationManager();
+			final OperationManager expectedOperationManager = new OperationManager(mathSigns);
 			expectedOperationManager.setOperation("3+73-");
 
 			assertEquals(expectedOperationManager, testOperationManager,
@@ -59,10 +62,10 @@ import fr.alpha.calculator.OperationManager;
 
 		@Test
 		public void testClearEmptyOperation(){
-			final OperationManager testOperationManager = new OperationManager();
+			final OperationManager testOperationManager = new OperationManager(mathSigns);
 			testOperationManager.clearOperation();
 
-			final OperationManager expectedOperationManager = new OperationManager();
+			final OperationManager expectedOperationManager = new OperationManager(mathSigns);
 			expectedOperationManager.setOperation("");
 
 			assertEquals(expectedOperationManager, testOperationManager,
@@ -71,11 +74,11 @@ import fr.alpha.calculator.OperationManager;
 
 		@Test
 		public void testClearFilledOperation(){
-			final OpearationManager testOperationManager = new OperationManager();
+			final OperationManager testOperationManager = new OperationManager(mathSigns);
 			testOperationManager.setOperation("5-3");
 			testOperationManager.clearOperation();
 
-			final OperationManager expectedOperationManager = new OperationManager();
+			final OperationManager expectedOperationManager = new OperationManager(mathSigns);
 			expectedOperationManager.setOperation("");
 
 			assertEquals(expectedOperationManager, testOperationManager,
@@ -84,7 +87,7 @@ import fr.alpha.calculator.OperationManager;
 
 		@Test
 		public void testComputes(){
-			final OperationManager testOperationManager = new OperationManager();
+			final OperationManager testOperationManager = new OperationManager(mathSigns);
 			testOperationManager.setOperation("5-3");
 			
 			assertEquals(2.0, testOperationManager.computes(),
@@ -119,13 +122,13 @@ import fr.alpha.calculator.OperationManager;
 
 		@Test
 		public void testRemoveCharacter(){
-			final OperationManager testOperationManager = new OperationManager();
+			final OperationManager testOperationManager = new OperationManager(mathSigns);
 			testOperationManager.setOperation("4*23");
 
 			assertTrue(testOperationManager.removeCharacter(),
 					"removeCharacter must return true !");
 
-			final OperationManager expectedOperationManager = new OperationManager();
+			final OperationManager expectedOperationManager = new OperationManager(mathSigns);
 			expectedOperationManager.setOperation("4*2");
 
 			assertEquals(expectedOperationManager, testOperationManager,
