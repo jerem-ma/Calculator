@@ -112,7 +112,12 @@ public class OperationManager implements IOperationManager{
 
 	@Override
 	public boolean removeCharacter(){
-		return false;
+		if (this.operation == "")
+			return false;
+
+		// Remove the last character
+		this.operation = this.operation.substring(0, this.operation.length() - 1);
+		return true;
 	}
 
 	@Override
