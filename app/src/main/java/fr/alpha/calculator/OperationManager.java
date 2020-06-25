@@ -134,6 +134,12 @@ public class OperationManager implements IOperationManager{
 		return Objects.hash(this.mathSigns, this.operation);
 	}
 
+	@Override
+	public String toString(){
+		return "mathSigns : " + Arrays.toString(this.mathSigns)
+			+ ", operation : " + this.operation;
+	}
+
 	private MathematicalType getMathematicalType(char c){
 		if (Character.isDigit(c))
 			return MathematicalType.DIGIT;
