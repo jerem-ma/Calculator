@@ -1,6 +1,7 @@
 package fr.alpha.calculator;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
@@ -112,6 +113,20 @@ public class OperationManager implements IOperationManager{
 	@Override
 	public boolean removeCharacter(){
 		return false;
+	}
+
+	@Override
+	public boolean equals(Object obj){
+		if (this == obj)
+			return true;
+
+		if (!(obj instanceof OperationManager))
+			return false;
+
+		final OperationManager operationManager = (OperationManager) obj;
+
+		return Arrays.equals(this.mathSigns, operationManager.mathSigns)
+			&& Objects.equals(this.operation, operationManager.operation);
 	}
 
 	private MathematicalType getMathematicalType(char c){
