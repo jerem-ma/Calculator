@@ -2,6 +2,8 @@ package fr.alpha.calculator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Objects;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
@@ -21,10 +23,10 @@ import fr.alpha.calculator.OperationManager;
 					"addCharacter must return true !");
 
 			final OperationManager expectedOperationManager = new OperationManager(mathSigns);
-			expectedOperationManager.setOperation("0");
+			expectedOperationManager.setOperation("");
 
 			assertEquals(expectedOperationManager, testOperationManager, 
-					"operation must be equal to \"0\" !");
+				"operation must be equal to \"0\" !");
 
 		}
 
