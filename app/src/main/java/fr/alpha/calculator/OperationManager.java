@@ -102,7 +102,7 @@ public class OperationManager implements IOperationManager{
 
 	@Override
 	public void clearOperation(){
-
+		this.operation = "";
 	}
 
 	@Override
