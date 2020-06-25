@@ -141,19 +141,19 @@ import fr.alpha.calculator.OperationManager;
 			assertTrue(testOperationManager.removeCharacter(),
 					"removeCharacter must return true !");
 
-			expectedOperationManager.setOperation("0");
+			expectedOperationManager.setOperation("");
 
 			assertEquals(expectedOperationManager, testOperationManager,
-					"operation must be equal to 0 !");
+					"operation must be equal to an empty string !");
 
 
 			testOperationManager.setOperation("");
 			assertFalse(testOperationManager.removeCharacter(),
 					"removeCharacter must return false !");
 
-			expectedOperationManager.setOperation("0");
+			expectedOperationManager.setOperation("");
 
 			assertEquals(expectedOperationManager, testOperationManager,
-					"operation must be equal to 0 !");
+					"operation must be equal to an empty string !");
 		}
 	}
