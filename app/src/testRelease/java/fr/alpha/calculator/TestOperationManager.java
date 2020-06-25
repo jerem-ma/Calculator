@@ -40,7 +40,7 @@ import fr.alpha.calculator.OperationManager;
 					"addCharacter must return true !");
 
 			final OperationManager expectedOperationManager = new OperationManager(mathSigns);
-			testOperationManager.setOperation("3+73-5+");
+			expectedOperationManager.setOperation("3+73-5+");
 
 			assertEquals(expectedOperationManager, testOperationManager,
 					"operation must be equal to \"3+73-5+\" !");
