@@ -43,7 +43,7 @@ import fr.alpha.calculator.OperationManager;
 			testOperationManager.setOperation("3+73-5+");
 
 			assertEquals(expectedOperationManager, testOperationManager,
-					"operaton must be equal to \"3+73-5+\" !");
+					"operation must be equal to \"3+73-5+\" !");
 
 		}
 
