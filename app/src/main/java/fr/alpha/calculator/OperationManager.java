@@ -1,13 +1,14 @@
 package fr.alpha.calculator;
 
+import java.util.regex.Pattern;
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
 import org.apache.commons.lang3.Validate;
 
 import fr.alpha.calculator.interfaces.IOperationManager;
+import fr.alpha.calculator.FindReturn;
 import fr.alpha.calculator.MathematicalType;
 import fr.alpha.calculator.R;
 
@@ -143,6 +144,37 @@ public class OperationManager implements IOperationManager{
 	public String toString(){
 		return "mathSigns : " + Arrays.toString(this.mathSigns)
 			+ ", operation : " + this.operation;
+	}
+
+	/**
+	 * Search in a string if one of the signs is present
+	 *
+	 * @return A FindReturn object containing the index and the char
+	 * Return index=-1 and an empty char if not found
+	 */
+	private FindReturn find(@NonNull String str, @NonNull char[] signs){
+		Validate.notNull(str);
+		Validate.notNull(signs);
+
+		if (signs.length == 0)
+			return new FindReturn();
+
+		FindReturn winner = null;
+
+		for (char c : signs){
+			int i = str.indexOf(String.valueOf(c));
+			if (i == -1)
+				continue;
+
+			if (winner == null || i > winner.getIndex())
+				winner = new FindReturn(i, c);
+		}
+
+		if (winner == null)
+			return new FindReturn();
+
+		return winner;
+
 	}
 
 	private MathematicalType getMathematicalType(char c){
