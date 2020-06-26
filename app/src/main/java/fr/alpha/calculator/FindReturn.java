@@ -1,5 +1,10 @@
 package fr.alpha.calculator;
 
+/**
+ * Object representing the return of a find method
+ * 
+ * If nothing has been found, the index = -1 and sign = '\0'
+ */
 public class FindReturn{
 
 	private final int index;
