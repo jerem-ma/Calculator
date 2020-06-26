@@ -28,4 +28,8 @@ public class FindReturn{
 		return this.sign;		
 	}
 
+	public boolean isEmpty(){
+		return this.index == -1;
+	}
+
 }
