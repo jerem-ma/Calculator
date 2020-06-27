@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="sign_display_plus">+</string>
+	<string name="sign_math_plus">+</string>
+
+	<string name="sign_display_minus">−</string>
+	<string name="sign_math_minus">-</string>
+
+	<string name="sign_display_multiplication">−</string>
+	<string name="sign_math_multiplication">-</string>
+
+	<string name="sign_display_division">÷</string>
+	<string name="sign_math_division">/</string>
+
+	<string-array name="sign_display">
+		<item>@string/sign_display_plus</item>
+		<item>@string/sign_display_minus</item>
+		<item>@string/sign_display_multiplication</item>
+		<item>@string/sign_display_division</item>
+	</string-array>
+
+	<string-array name="sign_math">
+		<item>@string/sign_math_plus</item>
+		<item>@string/sign_math_minus</item>
+		<item>@string/sign_math_multiplication</item>
+		<item>@string/sign_math_division</item>
+	</string-array>
+</resources>
