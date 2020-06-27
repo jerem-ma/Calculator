@@ -100,18 +100,11 @@ import fr.alpha.calculator.OperationManager;
 					"computes must return 12.0 !");
 
 			testOperationManager.setOperation("10/3");
-			assertEquals(10/3, testOperationManager.computes(),
+			assertEquals(10.0/3, testOperationManager.computes(),
 					"computes must return the result of 10/3");
 
 			testOperationManager.setOperation("5/0");
-			assertThrows(ArithmeticException.class, new Executable(){
-
-				@Override
-				public void execute(){
-					testOperationManager.computes();
-				}
-
-			}, "computes must throw an ArithmeticException !");
+			assertEquals(Double.POSITIVE_INFINITY, testOperationManager.computes());
 
 			testOperationManager.setOperation("0/5");
 			assertEquals(0.0, testOperationManager.computes(),
