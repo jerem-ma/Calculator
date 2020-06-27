@@ -14,6 +14,8 @@ import fr.alpha.calculator.R;
 
 public class OperationManager implements IOperationManager{
 
+	private static final char[][] SIGN_PRIORITY = {{'*', '/'}, {'+', '-'}};
+
 	private String[] mathSigns;
 	private String operation;
 
@@ -108,7 +110,31 @@ public class OperationManager implements IOperationManager{
 
 	@Override
 	public double computes(){
-		return 0.0;
+		String result = this.operation;
+
+		for (final char[] tmpSignsPriority : SIGN_PRIORITY){
+			FindReturn nearestChar = null;
+			do{
+				nearestChar = find(result, tmpSignsPriority);
+
+				if (nearestChar.isEmpty())
+					break;
+
+				final String operationPart = subStringCurrentOperation(
+					result, nearestChar);
+
+				// Will return infinite when dividing by zero
+				final double resultPart = computeSingleOperation(
+					operationPart, nearestChar);
+
+				final String quotedOperationPart = Pattern.quote(operationPart);
+				result = result.replaceFirst(
+					quotedOperationPart, Double.toString(resultPart));
+
+			} while(!nearestChar.isEmpty());
+		}
+
+		return Double.parseDouble(result);
 	}
 
 	@Override
@@ -144,6 +170,39 @@ public class OperationManager implements IOperationManager{
 	public String toString(){
 		return "mathSigns : " + Arrays.toString(this.mathSigns)
 			+ ", operation : " + this.operation;
+	}
+
+	private double computeSingleOperation(String operation,
+		FindReturn findReturn){
+
+		final char sign = findReturn.getSign();
+		final String quotedSign = Pattern.quote(String.valueOf(sign));
+
+		final String[] rawNumbers = operation.split(quotedSign);
+		final double[] numbers = new double[2];
+
+		for (int i = 0; i < 2; i++){
+			numbers[i] = Double.parseDouble(rawNumbers[i]);
+		}
+
+		switch(sign){
+			case '+':
+				return numbers[0] + numbers[1];
+
+			case '-':
+				return numbers[0] - numbers[1];
+
+			case '*':
+				return numbers[0] * numbers[1];
+
+			case '/':
+				return numbers[0] / numbers[1];
+
+			default:
+				throw new IllegalArgumentException(
+					"The given sign is not available !");
+		}
+
 	}
 
 	/**
@@ -213,6 +272,50 @@ public class OperationManager implements IOperationManager{
 		}
 
 		return false;
+	}
+
+	private boolean isSign(@NonNull String operation, int index){
+		Validate.notNull(operation);
+
+		final char currentChar = operation.charAt(index);
+		final MathematicalType type = getMathematicalType(currentChar);
+
+		if (type == MathematicalType.SIGN)
+			return true;
+
+		return false;
+	}
+
+	private String subStringCurrentOperation(
+		@NonNull String operation,
+		@NonNull FindReturn findReturn){
+
+		Validate.notNull(operation);
+		Validate.notNull(findReturn);
+
+		if (operation.equals("") || findReturn.isEmpty())
+			return "";
+
+		int begin = 0;
+		int end = operation.length();
+		int signIndex = findReturn.getIndex();
+
+		for (int i = signIndex - 1; i >= 0 && begin != 0; i--){
+			if (isSign(operation, i))
+				begin = i + 1;
+		}
+
+		for (
+			int i = signIndex + 1;
+			i < operation.length() && end != operation.length();
+			i++
+		)
+		{
+			if (isSign(operation, i))
+				end = i;
+		}
+
+		return operation.substring(begin, end);
 	}
 
 }
