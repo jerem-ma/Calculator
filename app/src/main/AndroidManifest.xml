@@ -3,6 +3,7 @@
 	package="fr.alpha.calculator">
 
 	<application
+		android:allowBackup="false"
 		android:label="Calculator"
 		android:theme="@style/AppTheme">
 
