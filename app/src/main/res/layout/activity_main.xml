@@ -37,6 +37,7 @@
 			android:id="@+id/ClearButton"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="clearButtonClick"
 			android:theme="@style/AppTheme.Button.OrangeText"
 			android:text="C" />
 
@@ -44,6 +45,7 @@
 			android:id="@+id/DeleteButton"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="deleteButtonClick"
 			android:theme="@style/AppTheme.Button.OrangeText"
 			android:text="←" />
 
@@ -51,6 +53,7 @@
 			android:id="@+id/PercentButton"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="percentButtonClick"
 			android:theme="@style/AppTheme.Button.OrangeText"
 			android:text="%" />
 	
@@ -58,6 +61,7 @@
 			android:id="@+id/DivideButton"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="divideButtonClick"
 			android:theme="@style/AppTheme.Button.OrangeText"
 			android:text="@string/sign_display_division" />			
 
@@ -65,6 +69,7 @@
 			android:id="@+id/NumberButton-7"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="sevenButtonClick"
 			android:theme="@style/AppTheme.Button.WhiteText"
 			android:text="7" />
 
@@ -72,6 +77,7 @@
 			android:id="@+id/NumberButton-8"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="eightButtonClick"
 			android:theme="@style/AppTheme.Button.WhiteText"
 			android:text="8" />			
 
@@ -79,6 +85,7 @@
 			android:id="@+id/NumberButton-9"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="nineButtonClick"
 			android:theme="@style/AppTheme.Button.WhiteText"
 			android:text="9" />			
 	
@@ -86,6 +93,7 @@
 			android:id="@+id/MultiplyButton"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="multiplyButtonClick"
 			android:theme="@style/AppTheme.Button.OrangeText"
 			android:text="@string/sign_display_multiplication" />			
 
@@ -93,6 +101,7 @@
 			android:id="@+id/NumberButton-4"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="fourButtonClick"
 			android:theme="@style/AppTheme.Button.WhiteText"
 			android:text="4" />			
 
@@ -100,6 +109,7 @@
 			android:id="@+id/NumberButton-5"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="fiveButtonClick"
 			android:theme="@style/AppTheme.Button.WhiteText"
 			android:text="5" />			
 
@@ -107,6 +117,7 @@
 			android:id="@+id/NumberButton-6"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="sixButtonClick"
 			android:theme="@style/AppTheme.Button.WhiteText"
 			android:text="6" />			
 
@@ -114,6 +125,7 @@
 			android:id="@+id/MinusButton"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="minusButtonClick"
 			android:theme="@style/AppTheme.Button.OrangeText"
 			android:text="@string/sign_display_minus" />
 
@@ -121,6 +133,7 @@
 			android:id="@+id/NumberButton-1"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="oneButtonClick"
 			android:theme="@style/AppTheme.Button.WhiteText"
 			android:text="1" />			
 
@@ -128,6 +141,7 @@
 			android:id="@+id/NumberButton-2"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="twoButtonClick"
 			android:theme="@style/AppTheme.Button.WhiteText"
 			android:text="2" />			
 
@@ -135,6 +149,7 @@
 			android:id="@+id/NumberButton-3"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="threeButtonClick"
 			android:theme="@style/AppTheme.Button.WhiteText"
 			android:text="3" />
 
@@ -142,6 +157,7 @@
 			android:id="@+id/SumButton"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="sumButtonClick"
 			android:theme="@style/AppTheme.Button.OrangeText"
 			android:text="@string/sign_display_plus" />
 
@@ -151,6 +167,7 @@
 			android:id="@+id/NumberButton-0"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="zeroButtonClick"
 			android:theme="@style/AppTheme.Button.WhiteText"
 			android:text="0" />			
 
@@ -158,6 +175,7 @@
 			android:id="@+id/DecimalPointButton"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="decimalPointButtonClick"
 			android:theme="@style/AppTheme.Button.WhiteText"
 			android:text="." />			
 
@@ -165,6 +183,7 @@
 			android:id="@+id/ResultButton"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:onClick="resultButtonClick"
 			android:theme="@style/AppTheme.Button.OrangeText"
 			android:text="=" />			
 

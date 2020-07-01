@@ -57,7 +57,7 @@ public class OperationManager implements IOperationManager{
 		if (isNotMathematical)
 			return false;
 
-		if (operation == ""){
+		if (operation.equals("")){
 			switch (mathType){
 				case DIGIT:
 					// Don't change anything if the character is '0'
@@ -134,16 +134,26 @@ public class OperationManager implements IOperationManager{
 			} while(!nearestChar.isEmpty());
 		}
 
+		if (result.equals("0.0"))
+			this.operation = "";
+
+		else
+			this.operation = result;
+
 		return Double.parseDouble(result);
 	}
 
 	@Override
 	public boolean removeCharacter(){
-		if (this.operation == "")
+		if (this.operation.equals(""))
 			return false;
 
 		// Remove the last character
 		this.operation = this.operation.substring(0, this.operation.length() - 1);
+
+		if (this.operation.equals("0"))
+			this.operation = "";
+
 		return true;
 	}
 
