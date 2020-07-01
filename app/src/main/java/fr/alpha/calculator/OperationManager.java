@@ -141,7 +141,7 @@ public class OperationManager implements IOperationManager{
 
 	@Override
 	public boolean removeCharacter(){
-		if (this.operation == "")
+		if (this.operation.equals(""))
 			return false;
 
 		// Remove the last character
