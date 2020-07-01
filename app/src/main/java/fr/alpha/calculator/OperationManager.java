@@ -134,7 +134,11 @@ public class OperationManager implements IOperationManager{
 			} while(!nearestChar.isEmpty());
 		}
 
-		this.operation = result;
+		if (result.equals("0.0"))
+			this.operation = "";
+
+		else
+			this.operation = result;
 
 		return Double.parseDouble(result);
 	}
