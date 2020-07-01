@@ -57,7 +57,7 @@ public class OperationManager implements IOperationManager{
 		if (isNotMathematical)
 			return false;
 
-		if (operation == ""){
+		if (operation.equals("")){
 			switch (mathType){
 				case DIGIT:
 					// Don't change anything if the character is '0'
