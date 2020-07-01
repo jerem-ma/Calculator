@@ -6,8 +6,8 @@
 	<string name="sign_display_minus">−</string>
 	<string name="sign_math_minus">-</string>
 
-	<string name="sign_display_multiplication">−</string>
-	<string name="sign_math_multiplication">-</string>
+	<string name="sign_display_multiplication">×</string>
+	<string name="sign_math_multiplication">*</string>
 
 	<string name="sign_display_division">÷</string>
 	<string name="sign_math_division">/</string>
