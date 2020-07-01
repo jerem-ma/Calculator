@@ -146,6 +146,10 @@ public class OperationManager implements IOperationManager{
 
 		// Remove the last character
 		this.operation = this.operation.substring(0, this.operation.length() - 1);
+
+		if (this.operation.equals("0"))
+			this.operation = "";
+
 		return true;
 	}
 
