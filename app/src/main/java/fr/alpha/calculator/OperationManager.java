@@ -284,6 +284,14 @@ public class OperationManager implements IOperationManager{
 		return false;
 	}
 
+	private boolean isInteger(double nbr){
+		if (nbr == (int) nbr)
+			return true;
+
+		return false;
+	}
+
+
 	private boolean isSign(@NonNull String operation, int index){
 		Validate.notNull(operation);
 
