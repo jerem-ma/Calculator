@@ -32,7 +32,16 @@ public class MainActivity extends Activity {
 
 	public void updateUI(){
 		final String operation = manager.getOperation();
-		result.setText(operation);
+		
+		String displayed;
+
+		if (operation.equals(""))
+			displayed = "0";
+
+		else
+			displayed = operation;
+
+		result.setText(displayed);
 	}
 
 	/* ** Events ** */
