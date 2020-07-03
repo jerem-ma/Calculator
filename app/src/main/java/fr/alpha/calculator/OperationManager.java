@@ -120,6 +120,11 @@ public class OperationManager implements IOperationManager{
 				if (nearestChar.isEmpty() || nearestChar.getIndex() == 0)
 					break;
 
+				if (nearestChar.getIndex() == result.length() - 1){
+					result = result.substring(0, result.length() - 1);
+					break;
+				}
+
 				final String operationPart = subStringCurrentOperation(
 					result, nearestChar);
 
