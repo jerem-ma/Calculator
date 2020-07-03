@@ -51,6 +51,9 @@ public class OperationManager implements IOperationManager{
 
 	@Override
 	public boolean addCharacter(char c){
+		if (containsFakeNumber(this.operation))
+			return false;
+
 		final MathematicalType mathType = getMathematicalType(c);
 
 		final boolean isNotMathematical = mathType == MathematicalType.NONE;
@@ -110,6 +113,9 @@ public class OperationManager implements IOperationManager{
 
 	@Override
 	public double computes(){
+		if (this.operation.equals(""))
+			return 0.0;
+
 		String result = this.operation;
 
 		for (final char[] tmpSignsPriority : SIGN_PRIORITY){
@@ -117,8 +123,13 @@ public class OperationManager implements IOperationManager{
 			do{
 				nearestChar = find(result, tmpSignsPriority);
 
-				if (nearestChar.isEmpty())
+				if (nearestChar.isEmpty() || nearestChar.getIndex() == 0)
 					break;
+
+				if (nearestChar.getIndex() == result.length() - 1){
+					result = result.substring(0, result.length() - 1);
+					break;
+				}
 
 				final String operationPart = subStringCurrentOperation(
 					result, nearestChar);
@@ -134,18 +145,23 @@ public class OperationManager implements IOperationManager{
 			} while(!nearestChar.isEmpty());
 		}
 
-		if (result.equals("0.0"))
+		final double doubleResult = Double.parseDouble(result);
+
+		if (doubleResult == 0.0)
 			this.operation = "";
+
+		else if (isInteger(doubleResult))
+			this.operation = Integer.toString((int) doubleResult);
 
 		else
 			this.operation = result;
 
-		return Double.parseDouble(result);
+		return doubleResult;
 	}
 
 	@Override
 	public boolean removeCharacter(){
-		if (this.operation.equals(""))
+		if (this.operation.equals("") || containsFakeNumber(this.operation))
 			return false;
 
 		// Remove the last character
@@ -284,6 +300,14 @@ public class OperationManager implements IOperationManager{
 		return false;
 	}
 
+	private boolean isInteger(double nbr){
+		if (nbr == (int) nbr)
+			return true;
+
+		return false;
+	}
+
+
 	private boolean isSign(@NonNull String operation, int index){
 		Validate.notNull(operation);
 
@@ -291,6 +315,13 @@ public class OperationManager implements IOperationManager{
 		final MathematicalType type = getMathematicalType(currentChar);
 
 		if (type == MathematicalType.SIGN)
+			return true;
+
+		return false;
+	}
+
+	private boolean containsFakeNumber(String nbr){
+		if (nbr.contains("Infinity") || nbr.contains("NaN"))
 			return true;
 
 		return false;
@@ -310,14 +341,14 @@ public class OperationManager implements IOperationManager{
 		int end = operation.length();
 		int signIndex = findReturn.getIndex();
 
-		for (int i = signIndex - 1; i >= 0 && begin != 0; i--){
+		for (int i = signIndex - 1; i >= 0 && begin == 0; i--){
 			if (isSign(operation, i))
 				begin = i + 1;
 		}
 
 		for (
 			int i = signIndex + 1;
-			i < operation.length() && end != operation.length();
+			i < operation.length() && end == operation.length();
 			i++
 		)
 		{
