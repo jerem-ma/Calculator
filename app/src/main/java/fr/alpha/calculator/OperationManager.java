@@ -51,6 +51,9 @@ public class OperationManager implements IOperationManager{
 
 	@Override
 	public boolean addCharacter(char c){
+		if (containsFakeNumber(this.operation))
+			return false;
+
 		final MathematicalType mathType = getMathematicalType(c);
 
 		final boolean isNotMathematical = mathType == MathematicalType.NONE;
@@ -158,7 +161,7 @@ public class OperationManager implements IOperationManager{
 
 	@Override
 	public boolean removeCharacter(){
-		if (this.operation.equals(""))
+		if (this.operation.equals("") || containsFakeNumber(this.operation))
 			return false;
 
 		// Remove the last character
