@@ -95,6 +95,11 @@ import fr.alpha.calculator.OperationManager;
 			assertEquals(2.0, testOperationManager.computes(),
 					"computes must return 2.0 !");
 
+			testOperationManager.setOperation("3-5");
+
+			assertEquals(-2.0, testOperationManager.computes(),
+				"compute must return -2.0 !");
+
 			testOperationManager.setOperation("4*3");
 			assertEquals(12.0, testOperationManager.computes(),
 					"computes must return 12.0 !");
