@@ -323,14 +323,14 @@ public class OperationManager implements IOperationManager{
 		int end = operation.length();
 		int signIndex = findReturn.getIndex();
 
-		for (int i = signIndex - 1; i >= 0 && begin != 0; i--){
+		for (int i = signIndex - 1; i >= 0 && begin == 0; i--){
 			if (isSign(operation, i))
 				begin = i + 1;
 		}
 
 		for (
 			int i = signIndex + 1;
-			i < operation.length() && end != operation.length();
+			i < operation.length() && end == operation.length();
 			i++
 		)
 		{
