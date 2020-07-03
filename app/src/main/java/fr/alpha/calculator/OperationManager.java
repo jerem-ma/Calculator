@@ -117,7 +117,7 @@ public class OperationManager implements IOperationManager{
 			do{
 				nearestChar = find(result, tmpSignsPriority);
 
-				if (nearestChar.isEmpty())
+				if (nearestChar.isEmpty() || nearestChar.getIndex() == 0)
 					break;
 
 				final String operationPart = subStringCurrentOperation(
