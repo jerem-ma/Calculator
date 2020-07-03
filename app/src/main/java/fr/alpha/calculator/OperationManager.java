@@ -110,6 +110,9 @@ public class OperationManager implements IOperationManager{
 
 	@Override
 	public double computes(){
+		if (this.operation.equals(""))
+			return 0.0;
+
 		String result = this.operation;
 
 		for (final char[] tmpSignsPriority : SIGN_PRIORITY){
