@@ -317,6 +317,13 @@ public class OperationManager implements IOperationManager{
 		return false;
 	}
 
+	private boolean containsFakeNumber(String nbr){
+		if (nbr.contains("Infinity") || nbr.contains("NaN"))
+			return true;
+
+		return false;
+	}
+
 	private String subStringCurrentOperation(
 		@NonNull String operation,
 		@NonNull FindReturn findReturn){
