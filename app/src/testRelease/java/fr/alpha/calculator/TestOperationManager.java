@@ -3,6 +3,7 @@ package fr.alpha.calculator;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Objects;
+import java.util.Random;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
@@ -118,6 +119,57 @@ import fr.alpha.calculator.OperationManager;
 			testOperationManager.setOperation("5*0");
 			assertEquals(0.0, testOperationManager.computes(),
 					"computes must return 0.0 !");
+
+			// New due to random tests for exceptions
+			testOperationManager.setOperation("18/99865");
+			testOperationManager.computes();
+
+			testOperationManager.setOperation("7-05999-");
+			testOperationManager.computes();
+
+			testOperationManager.setOperation("261282/69/53481994*684+43+");
+			testOperationManager.computes();
+		}
+
+		@Test
+		public void testRandomKeyPress(){
+			final OperationManager testOperationManager = new OperationManager(mathSigns);
+
+			final char[] keys = new char[]{
+				'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+				'+', '-', '*', '/', ',',
+				'C', '<', '='
+			};
+
+			final Random rdm = new Random();
+
+			try{
+				for (int i = 0; i <= 1000; i++){
+					final int number = rdm.nextInt(keys.length);
+
+					if (number <= 14)
+						testOperationManager.addCharacter(keys[number]);
+
+					else{
+						switch (number){
+							case 15:
+								testOperationManager.clearOperation();
+								break;
+							case 16:
+								testOperationManager.removeCharacter();
+								break;
+							case 17:
+								testOperationManager.computes();
+								break;
+						}
+					}
+				}
+			} catch (Exception e){
+				System.out.println("Operation : " + testOperationManager.getOperation());
+				throw e;
+			}
+
+			assertTrue(true);
 		}
 
 		@Test

@@ -117,6 +117,10 @@ public class OperationManager implements IOperationManager{
 			return 0.0;
 
 		String result = this.operation;
+		final char lastChar = result.charAt(result.length() - 1);
+		if (getMathematicalType(lastChar) == MathematicalType.SIGN){
+			result = result.substring(0, result.length() - 1);
+		}
 
 		for (final char[] tmpSignsPriority : SIGN_PRIORITY){
 			FindReturn nearestChar = null;
@@ -125,11 +129,6 @@ public class OperationManager implements IOperationManager{
 
 				if (nearestChar.isEmpty() || nearestChar.getIndex() == 0)
 					break;
-
-				if (nearestChar.getIndex() == result.length() - 1){
-					result = result.substring(0, result.length() - 1);
-					break;
-				}
 
 				final String operationPart = subStringCurrentOperation(
 					result, nearestChar);
@@ -247,7 +246,15 @@ public class OperationManager implements IOperationManager{
 		FindReturn winner = null;
 
 		for (char c : signs){
-			int i = str.indexOf(String.valueOf(c));
+			int falseSignIndex = 0;
+
+			// Avoid split with small numbers like 1.225211E-3
+			int i;
+			do{
+				i = str.indexOf(String.valueOf(c), falseSignIndex + 1);
+				falseSignIndex = i;
+			} while(i > 0 && str.charAt(i - 1) == 'E');
+
 			if (i == -1)
 				continue;
 
