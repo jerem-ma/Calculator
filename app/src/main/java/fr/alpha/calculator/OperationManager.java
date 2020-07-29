@@ -364,13 +364,6 @@ public class OperationManager implements IOperationManager{
 		return false;
 	}
 
-	private boolean containsFakeNumber(List<String> nbr){
-		if (nbr.contains("Infinity") || nbr.contains("NaN"))
-			return true;
-
-		return false;
-	}
-
 	/**
 	 * Get the begin and the end of a single operation
 	 */
