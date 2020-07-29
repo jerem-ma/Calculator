@@ -1,5 +1,7 @@
 package fr.alpha.calculator.interfaces;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
 
 /**
@@ -17,7 +19,8 @@ public interface IOperationManager{
 	 * Getters and setters used for unit tests
 	 *
 	 */
-	public String getOperation();
+	public List<String> getOperation();
+	public void setOperation(@NonNull List<String> operation);
 	public void setOperation(@NonNull String operation);
 	
 	/**

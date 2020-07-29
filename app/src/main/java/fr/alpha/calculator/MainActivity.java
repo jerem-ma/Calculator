@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void updateUI(){
-		final String operation = manager.getOperation();
+		final String operation = String.join("", manager.getOperation());
 		
 		String displayed;
 

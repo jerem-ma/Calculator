@@ -24,7 +24,7 @@ import fr.alpha.calculator.OperationManager;
 					"addCharacter must return true !");
 
 			final OperationManager expectedOperationManager = new OperationManager(mathSigns);
-			expectedOperationManager.setOperation("");
+			expectedOperationManager.clearOperation();
 
 			assertEquals(expectedOperationManager, testOperationManager, 
 				"operation must be equal to \"0\" !");
