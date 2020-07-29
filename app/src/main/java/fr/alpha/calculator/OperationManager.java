@@ -1,8 +1,10 @@
 package fr.alpha.calculator;
 
-import java.util.regex.Pattern;
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
 import org.apache.commons.lang3.Validate;
@@ -17,7 +19,7 @@ public class OperationManager implements IOperationManager{
 	private static final char[][] SIGN_PRIORITY = {{'*', '/'}, {'+', '-'}};
 
 	private String[] mathSigns;
-	private String operation;
+	private List<String> operation;
 
 	/**
 	 * OperationManager's constructor
@@ -25,7 +27,7 @@ public class OperationManager implements IOperationManager{
 	public OperationManager(@NonNull String[] mathSigns){
 		Validate.notNull(mathSigns);
 		this.mathSigns = mathSigns;
-		operation = "";
+		operation = new ArrayList<String>();
 	}
 
 	/**
@@ -34,7 +36,7 @@ public class OperationManager implements IOperationManager{
 	 * Used for unit test only !
 	 */
 	@Override
-	public String getOperation(){
+	public List<String> getOperation(){
 		return operation;
 	}
 
@@ -44,7 +46,7 @@ public class OperationManager implements IOperationManager{
 	 * Used for unit test only !
 	 */
 	@Override
-	public void setOperation(@NonNull String operation){
+	public void setOperation(@NonNull List<String> operation){
 		Validate.notNull(operation);
 		this.operation = operation;
 	}
@@ -60,30 +62,32 @@ public class OperationManager implements IOperationManager{
 		if (isNotMathematical)
 			return false;
 
-		if (operation.equals("")){
+		if (operation.isEmpty()){
 			switch (mathType){
 				case DIGIT:
 					// Don't change anything if the character is '0'
 					if (c != '0')
-						operation = String.valueOf(c);
+						operation.add(String.valueOf(c));
 
 					return true;
 	
 				case SIGN:
 				case DOT:
-					operation = "0" + c;
+					operation.add("0");
+					operation.add(String.valueOf(c));
 					return true;
 			}
 		}
 
-		final char lastChar = operation.charAt(operation.length() - 1);
+		final String lastString = operation.get(operation.size() - 1);
+		final char lastChar = lastString.charAt(lastString.length() - 1);
 		final MathematicalType lastCharType = getMathematicalType(lastChar);
 
 		switch (lastCharType){
 			case SIGN:
 			case DOT:
 				if (mathType == MathematicalType.DIGIT){
-					operation += c;
+					operation.add(String.valueOf(c));
 					return true;
 				}
 
@@ -91,12 +95,12 @@ public class OperationManager implements IOperationManager{
 
 			case DIGIT:
 				if (mathType != MathematicalType.DOT){
-					operation += c;
+					operation.add(String.valueOf(c));
 					return true;
 				}
 
 				if (!isLastNumberFloat(operation)){
-					operation += c;
+					operation.add(String.valueOf(c));
 					return true;
 				}
 
@@ -108,18 +112,19 @@ public class OperationManager implements IOperationManager{
 
 	@Override
 	public void clearOperation(){
-		this.operation = "";
+		this.operation.clear();
 	}
 
 	@Override
 	public double computes(){
-		if (this.operation.equals(""))
+		if (this.operation.isEmpty())
 			return 0.0;
 
-		String result = this.operation;
-		final char lastChar = result.charAt(result.length() - 1);
+		List<String> result = new ArrayList<String>(this.operation);
+		final String lastString = result.get(result.size() - 1);
+		final char lastChar = lastString.charAt(lastString.length() - 1);
 		if (getMathematicalType(lastChar) == MathematicalType.SIGN){
-			result = result.substring(0, result.length() - 1);
+			result.remove(result.size() - 1);
 		}
 
 		for (final char[] tmpSignsPriority : SIGN_PRIORITY){
@@ -127,30 +132,33 @@ public class OperationManager implements IOperationManager{
 			do{
 				nearestChar = find(result, tmpSignsPriority);
 
-				if (nearestChar.isEmpty() || nearestChar.getIndex() == 0)
+				if (nearestChar.isEmpty())
 					break;
 
-				final String operationPart = subStringCurrentOperation(
+				final int[] limits = subStringCurrentOperation(
 					result, nearestChar);
+
+				int begin = limits[0];
+				final int end = limits[1];
 
 				// Will return infinite when dividing by zero
 				final double resultPart = computeSingleOperation(
 					operationPart, nearestChar);
 
-				final String quotedOperationPart = Pattern.quote(operationPart);
-				result = result.replaceFirst(
-					quotedOperationPart, Double.toString(resultPart));
+				for (int i = begin; i < end; i++){
+					result.remove(begin);
+				}
+
+				result.add(begin, Double.toString(resultPart));
 
 			} while(!nearestChar.isEmpty());
 		}
 
-		final double doubleResult = Double.parseDouble(result);
+		final String stringResult = String.join("", result);
+		final double doubleResult = Double.parseDouble(stringResult);
 
 		if (doubleResult == 0.0)
-			this.operation = "";
-
-		else if (isInteger(doubleResult))
-			this.operation = Integer.toString((int) doubleResult);
+			this.operation.clear();
 
 		else
 			this.operation = result;
@@ -160,14 +168,13 @@ public class OperationManager implements IOperationManager{
 
 	@Override
 	public boolean removeCharacter(){
-		if (this.operation.equals("") || containsFakeNumber(this.operation))
+		if (this.operation.isEmpty())
 			return false;
 
-		// Remove the last character
-		this.operation = this.operation.substring(0, this.operation.length() - 1);
+		this.operation.remove(this.operation.size() - 1);
 
-		if (this.operation.equals("0"))
-			this.operation = "";
+		if (this.operation.size() == 1 && this.operation.get(0) == "0")
+			this.operation.clear();
 
 		return true;
 	}
@@ -182,8 +189,13 @@ public class OperationManager implements IOperationManager{
 
 		final OperationManager operationManager = (OperationManager) obj;
 
+		final String joinedThisOperation = String.join("", this.operation);
+
+		final List<String> objOperation = operationManager.getOperation();
+		final String joinedObjOperation = String.join("", objOperation);
+
 		return Arrays.equals(this.mathSigns, operationManager.mathSigns)
-			&& Objects.equals(this.operation, operationManager.operation);
+			&& Objects.equals(joinedThisOperation, joinedObjOperation);
 	}
 
 	@Override
@@ -194,20 +206,30 @@ public class OperationManager implements IOperationManager{
 	@Override
 	public String toString(){
 		return "mathSigns : " + Arrays.toString(this.mathSigns)
-			+ ", operation : " + this.operation;
+			+ ", operation : " + String.join("", this.operation);
 	}
 
-	private double computeSingleOperation(String operation,
+	private double computeSingleOperation(List<String> operation,
 		FindReturn findReturn){
 
 		final char sign = findReturn.getSign();
-		final String quotedSign = Pattern.quote(String.valueOf(sign));
+		findReturn = find(operation, new char[]{sign});
 
-		final String[] rawNumbers = operation.split(quotedSign);
+		final int signIndex = findReturn.getIndex();
+		final int size = operation.size();
+
+		final List<String> rawFirstNumber = operation.subList(0, signIndex);
+		final List<String> rawSecondNumber = operation.subList(signIndex+1, size);
+		final List<List<String>> rawNumbers = new ArrayList<List<String>>();
+
+		rawNumbers.add(rawFirstNumber);
+		rawNumbers.add(rawSecondNumber);
+
 		final double[] numbers = new double[2];
 
 		for (int i = 0; i < 2; i++){
-			numbers[i] = Double.parseDouble(rawNumbers[i]);
+			final String joined = String.join("", rawNumbers.get(i));
+			numbers[i] = Double.parseDouble(joined);
 		}
 
 		switch(sign){
@@ -231,12 +253,12 @@ public class OperationManager implements IOperationManager{
 	}
 
 	/**
-	 * Search in a string if one of the signs is present
+	 * Search in a string list if one of the signs is present
 	 *
 	 * @return A FindReturn object containing the index and the char
 	 * Return index=-1 and an empty char if not found
 	 */
-	private FindReturn find(@NonNull String str, @NonNull char[] signs){
+	private FindReturn find(@NonNull List<String> str, @NonNull char[] signs){
 		Validate.notNull(str);
 		Validate.notNull(signs);
 
@@ -246,14 +268,7 @@ public class OperationManager implements IOperationManager{
 		FindReturn winner = null;
 
 		for (char c : signs){
-			int falseSignIndex = 0;
-
-			// Avoid split with small numbers like 1.225211E-3
-			int i;
-			do{
-				i = str.indexOf(String.valueOf(c), falseSignIndex + 1);
-				falseSignIndex = i;
-			} while(i > 0 && str.charAt(i - 1) == 'E');
+			final int i = str.indexOf(String.valueOf(c));
 
 			if (i == -1)
 				continue;
@@ -285,11 +300,11 @@ public class OperationManager implements IOperationManager{
 		return MathematicalType.NONE;
 	}
 
-	private boolean isLastNumberFloat(@NonNull String operation){
+	private boolean isLastNumberFloat(@NonNull List<String> operation){
 		Validate.notNull(operation);
 
-		for (int i = operation.length() - 1; i >= 0; i--){
-			final char currentChar = operation.charAt(i);
+		for (int i = operation.size() - 1; i >= 0; i--){
+			final char currentChar = String.join("", operation).charAt(i);
 			final MathematicalType type = getMathematicalType(currentChar);
 
 			switch (type){
@@ -327,43 +342,56 @@ public class OperationManager implements IOperationManager{
 		return false;
 	}
 
-	private boolean containsFakeNumber(String nbr){
+	private boolean containsFakeNumber(List<String> nbr){
 		if (nbr.contains("Infinity") || nbr.contains("NaN"))
 			return true;
 
 		return false;
 	}
 
-	private String subStringCurrentOperation(
-		@NonNull String operation,
+	/**
+	 * Get the begin and the end of a single operation
+	 */
+	private int[] subStringCurrentOperation(
+		@NonNull List<String> operation,
 		@NonNull FindReturn findReturn){
 
 		Validate.notNull(operation);
 		Validate.notNull(findReturn);
 
-		if (operation.equals("") || findReturn.isEmpty())
-			return "";
+		if (operation.isEmpty() || findReturn.isEmpty())
+			return new int[] {0, operation.size()};
 
 		int begin = 0;
-		int end = operation.length();
+		int end = operation.size();
 		int signIndex = findReturn.getIndex();
 
 		for (int i = signIndex - 1; i >= 0 && begin == 0; i--){
-			if (isSign(operation, i))
+			final String operationPart = operation.get(i);
+			if (operationPart.length() != 1)
+				continue;
+
+			final char character = operationPart.charAt(0);
+			if (isSign(character))
 				begin = i + 1;
 		}
 
 		for (
 			int i = signIndex + 1;
-			i < operation.length() && end == operation.length();
+			i < operation.size() && end == operation.size();
 			i++
 		)
 		{
-			if (isSign(operation, i))
+			final String operationPart = operation.get(i);
+			if (operationPart.length() != 1)
+				continue;
+
+			final char character = operationPart.charAt(0);
+			if (isSign(character))
 				end = i;
 		}
 
-		return operation.substring(begin, end);
+		return new int[] {begin, end};
 	}
 
 }
