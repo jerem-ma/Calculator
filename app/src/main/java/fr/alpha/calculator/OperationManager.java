@@ -52,6 +52,24 @@ public class OperationManager implements IOperationManager{
 	}
 
 	@Override
+	public void setOperation(@NonNull String operation){
+		Validate.notNull(operation);
+		final List<String> operationList = new ArrayList<String>();
+
+		if (operation.contains("NaN") || operation.contains("Infinity")
+				|| operation.contains("E"))
+			operationList.add(operation);
+
+		else{
+			final char[] charArrayOperation = operation.toCharArray();
+			for (char c : charArrayOperation){
+				operationList.add(String.valueOf(c));
+			}
+		}
+		setOperation(operationList);
+	}
+
+	@Override
 	public boolean addCharacter(char c){
 		if (containsFakeNumber(this.operation))
 			return false;
