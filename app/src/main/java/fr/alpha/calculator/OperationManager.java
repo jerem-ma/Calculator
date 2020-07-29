@@ -354,7 +354,12 @@ public class OperationManager implements IOperationManager{
 		Validate.notNull(operation);
 
 		final char currentChar = operation.charAt(index);
-		final MathematicalType type = getMathematicalType(currentChar);
+
+		return isSign(currentChar);
+	}
+
+	private boolean isSign(char character){
+		final MathematicalType type = getMathematicalType(character);
 
 		if (type == MathematicalType.SIGN)
 			return true;
