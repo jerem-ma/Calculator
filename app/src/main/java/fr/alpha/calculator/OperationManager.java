@@ -71,9 +71,6 @@ public class OperationManager implements IOperationManager{
 
 	@Override
 	public boolean addCharacter(char c){
-		if (containsFakeNumber(this.operation))
-			return false;
-
 		final MathematicalType mathType = getMathematicalType(c);
 
 		final boolean isNotMathematical = mathType == MathematicalType.NONE;
