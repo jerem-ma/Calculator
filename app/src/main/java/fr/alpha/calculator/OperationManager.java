@@ -159,6 +159,8 @@ public class OperationManager implements IOperationManager{
 				int begin = limits[0];
 				final int end = limits[1];
 
+				final List<String> operationPart = result.subList(begin, end);
+
 				// Will return infinite when dividing by zero
 				final double resultPart = computeSingleOperation(
 					operationPart, nearestChar);
@@ -291,7 +293,7 @@ public class OperationManager implements IOperationManager{
 			if (i == -1)
 				continue;
 
-			if (winner == null || i > winner.getIndex())
+			if (winner == null || i < winner.getIndex())
 				winner = new FindReturn(i, c);
 		}
 
